@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration des APIs - AI Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .setup-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .api-section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .api-section:last-child {
+            border-bottom: none;
+        }
+        
+        .api-section h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+        
+        .status-badge.not-configured {
+            background: #fee;
+            color: #c33;
+        }
+        
+        .status-badge.configured {
+            background: #efe;
+            color: #3c3;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .input-group {
+            margin-bottom: 12px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+        
+        input[type="text"],\n        input[type="password"] {\n            width: 100%;\n            padding: 12px;\n            border: 2px solid #ddd;\n            border-radius: 8px;\n            font-family: monospace;\n            font-size: 13px;\n            transition: border-color 0.3s;\n        }\n        \n        input[type=\"text\"]:focus,\n        input[type=\"password\"]:focus {\n            outline: none;\n            border-color: #667eea;\n        }\n        \n        .get-key-btn {\n            display: inline-block;\n            background: #667eea;\n            color: white;\n            padding: 8px 16px;\n            border-radius: 6px;\n            text-decoration: none;\n            font-size: 12px;\n            font-weight: 600;\n            margin-top: 8px;\n            transition: background 0.3s;\n        }\n        \n        .get-key-btn:hover {\n            background: #5568d3;\n        }\n        \n        .button-group {\n            display: flex;\n            gap: 12px;\n            margin-top: 30px;\n        }\n        \n        button {\n            flex: 1;\n            padding: 14px;\n            border: none;\n            border-radius: 8px;\n            font-weight: 600;\n            cursor: pointer;\n            font-size: 14px;\n            transition: all 0.3s;\n        }\n        \n        .btn-save {\n            background: #667eea;\n            color: white;\n        }\n        \n        .btn-save:hover {\n            background: #5568d3;\n            transform: translateY(-2px);\n        }\n        \n        .btn-skip {\n            background: #f0f0f0;\n            color: #333;\n        }\n        \n        .btn-skip:hover {\n            background: #e0e0e0;\n        }\n        \n        .success-message {\n            display: none;\n            background: #efe;\n            color: #3c3;\n            padding: 12px;\n            border-radius: 8px;\n            margin-bottom: 20px;\n            font-size: 13px;\n        }\n        \n        .success-message.show {\n            display: block;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"setup-container\">\n        <h1>⚙️ Configuration AI Assistant</h1>\n        <p class=\"subtitle\">Connectez vos APIs pour activer toutes les fonctionnalités</p>\n        \n        <div class=\"success-message\" id=\"successMessage\">✅ Configuration sauvegardée avec succès!</div>\n        \n        <!-- Google Gemini -->\n        <div class=\"api-section\">\n            <h2>\n                🤖 Google Gemini API\n                <span class=\"status-badge not-configured\" id=\"gemini-status\">NON CONFIGURÉE</span>\n            </h2>\n            <p class=\"description\">Gratuit et illimité pour le chatbot IA. Excellente qualité de réponses.</p>\n            \n            <div class=\"input-group\">\n                <label for=\"gemini-key\">Clé API Gemini:</label>\n                <input type=\"password\" id=\"gemini-key\" placeholder=\"Collez votre clé API ici...\">\n            </div>\n            \n            <a href=\"https://makersuite.google.com/app/apikey\" target=\"_blank\" class=\"get-key-btn\">📌 Obtenir votre clé gratuitement</a>\n        </div>\n        \n        <!-- Hugging Face -->\n        <div class=\"api-section\">\n            <h2>\n                🎨 Hugging Face API\n                <span class=\"status-badge not-configured\" id=\"huggingface-status\">NON CONFIGURÉE</span>\n            </h2>\n            <p class=\"description\">Gratuit avec limite d'utilisation. Pour générer des images avec Stable Diffusion.</p>\n            \n            <div class=\"input-group\">\n                <label for=\"huggingface-key\">Clé API Hugging Face:</label>\n                <input type=\"password\" id=\"huggingface-key\" placeholder=\"Collez votre clé API ici...\">\n            </div>\n            \n            <a href=\"https://huggingface.co/settings/tokens\" target=\"_blank\" class=\"get-key-btn\">📌 Obtenir votre clé gratuitement</a>\n        </div>\n        \n        <div class=\"button-group\">\n            <button class=\"btn-save\" onclick=\"saveConfiguration()\">💾 Sauvegarder</button>\n            <button class=\"btn-skip\" onclick=\"goToApp()\">⏭️ Passer</button>\n        </div>\n    </div>\n    \n    <script src=\"js/api-config.js\"></script>\n    <script>\n        // Vérifier les clés sauvegardées\n        function checkStatus() {\n            if (API_CONFIG.GEMINI_API_KEY) {\n                document.getElementById('gemini-key').value = API_CONFIG.GEMINI_API_KEY.substring(0, 10) + '...';\n                document.getElementById('gemini-status').textContent = '✅ CONFIGURÉE';\n                document.getElementById('gemini-status').classList.remove('not-configured');\n                document.getElementById('gemini-status').classList.add('configured');\n            }\n            \n            if (API_CONFIG.HUGGINGFACE_API_KEY) {\n                document.getElementById('huggingface-key').value = API_CONFIG.HUGGINGFACE_API_KEY.substring(0, 10) + '...';\n                document.getElementById('huggingface-status').textContent = '✅ CONFIGURÉE';\n                document.getElementById('huggingface-status').classList.remove('not-configured');\n                document.getElementById('huggingface-status').classList.add('configured');\n            }\n        }\n        \n        function saveConfiguration() {\n            const geminiKey = document.getElementById('gemini-key').value;\n            const huggingfaceKey = document.getElementById('huggingface-key').value;\n            \n            if (!geminiKey && !huggingfaceKey) {\n                alert('Veuillez entrer au moins une clé API');\n                return;\n            }\n            \n            const config = {};\n            if (geminiKey && !geminiKey.includes('...')) {\n                config.GEMINI_API_KEY = geminiKey;\n            }\n            if (huggingfaceKey && !huggingfaceKey.includes('...')) {\n                config.HUGGINGFACE_API_KEY = huggingfaceKey;\n            }\n            \n            if (Object.keys(config).length > 0) {\n                saveAPIKeys(config);\n                document.getElementById('successMessage').classList.add('show');\n                setTimeout(checkStatus, 500);\n                setTimeout(() => {\n                    document.getElementById('successMessage').classList.remove('show');\n                }, 3000);\n            }\n        }\n        \n        function goToApp() {\n            window.location.href = './index.html';\n        }\n        \n        checkStatus();\n    </script>\n</body>\n</html>\n```
+
+---
+
+### **ÉTAPE 2: Obtenir les clés API GRATUITES**
+
+**🔵 Google Gemini (Recommandé - Illimité & Gratuit)**
+1. Allez sur: https://makersuite.google.com/app/apikey
+2. Cliquez "Create API Key"
+3. Copiez la clé
+
+**🟣 Hugging Face (Pour images)**
+1. Allez sur: https://huggingface.co/settings/tokens
+2. Créez un compte (gratuit)
+3. Cliquez "New token"
+4. Copiez le token
+
+---
+
+### **ÉTAPE 3: Télécharger votre code en local**
+
+```bash
+# Téléchargez le ZIP depuis GitHub
+# https://github.com/ochimpo17-afk/Ai-assistant-PWA
+
+# OU utilisez Git
+git clone https://github.com/ochimpo17-afk/Ai-assistant-PWA.git
+cd Ai-assistant-PWA
